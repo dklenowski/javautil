@@ -2,8 +2,20 @@ package com.orbious.util;
 
 /**
  * A singleton instance for applications using shutdown hooks.
+ * Example Usage: e.g. from within a main thread:
  *
- * @author dave
+ *     Runtime.getRuntime().addShutdownHook(new Thread() {
+      public void run() {
+        logger.warn("Shutdown hook called");
+          Command.instance().shutdown(true);
+          while ( !Command.instance().canExit() ) {
+            try {
+              sleep(10000);
+            } catch ( InterruptedException ignored ) { }
+          }
+      }
+    });;
+ *
  */
 public class Command {
 
@@ -15,8 +27,9 @@ public class Command {
   private Command() { }
 
   public static Command instance() {
-    if ( instance == null )
+    if ( instance == null ) {
       instance = new Command();
+    }
 
     return instance;
   }

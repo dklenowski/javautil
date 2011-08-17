@@ -11,12 +11,16 @@ public class Files {
   }
 
   public static String suffix(String str) {
+    File f;
     int ct;
 
-    ct = str.lastIndexOf('.');
+    f = new File(str);
+    str = f.getName();
 
-    if ( ct < 0 )
+    ct = str.lastIndexOf('.');
+    if ( ct < 0 ) {
       return "";
+    }
 
     return str.substring(ct+1);
   }
@@ -26,12 +30,16 @@ public class Files {
   }
 
   public static String prefix(String str) {
+    File f;
     int ct;
 
-    ct = str.lastIndexOf('.');
+    f = new File(str);
+    str = f.getName();
 
-    if ( ct < 0 )
+    ct = str.lastIndexOf('.');
+    if ( ct < 0 ) {
       return str;
+    }
 
     return str.substring(0, ct);
   }
