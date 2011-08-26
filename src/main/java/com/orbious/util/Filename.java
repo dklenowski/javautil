@@ -2,9 +2,9 @@ package com.orbious.util;
 
 import java.io.File;
 
-public class Files {
+public class Filename {
 
-  private Files() { }
+  private Filename() { }
 
   public static String suffix(File f) {
     return suffix(f.getName());

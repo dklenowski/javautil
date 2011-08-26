@@ -9,49 +9,63 @@ import java.util.prefs.Preferences;
 
 public class Config {
 
-  public static final String app_version = "app_version";
-  public static final String log_realm = "log_realm";
-  public static final String log_config = "log_config";
+  protected static final String app_version = "app_version";
+  protected static final String log_realm = "log_realm";
+  protected static final String log_config = "log_config";
 
-  private static Config instance;
-  private Preferences preferences;
+  private static Preferences preferences;
 
-  private Config() {
+  static {
     preferences = Preferences.userRoot().node(Config.class.getName());
   }
 
-  public static Config instance() {
-    if ( instance == null ) {
-      instance = new Config();
-    }
-    return instance;
+  private Config() { }
+
+  public static String appVersion() {
+    return preferences.get(app_version, "");
   }
 
-  public void put(IConfig key, String value) {
+  public static String logRealm() {
+    return preferences.get(log_realm, "");
+  }
+
+  public static String logConfig() {
+    return preferences.get(log_config, "");
+  }
+
+  public static void putString(IConfig key, String value) {
     preferences.put(key.getName(), value);
   }
 
-  public String getString(IConfig key) {
+  public static String getString(IConfig key) {
     return preferences.get(key.getName(), "");
   }
 
-  public void put(IConfig key, int value) {
+  public static void putInt(IConfig key, int value) {
     preferences.putInt(key.getName(), value);
   }
 
-  public int getInt(IConfig key) {
+  public static int getInt(IConfig key) {
     return preferences.getInt(key.getName(), -1);
   }
 
-  public void put(IConfig key, double value) {
+  public static void putDouble(IConfig key, double value) {
     preferences.putDouble(key.getName(), value);
   }
 
-  public double getDouble(IConfig key) {
+  public static double getDouble(IConfig key) {
     return preferences.getDouble(key.getName(), Double.NaN);
   }
 
-  public void setDefaults(Class<?> clazz) throws ConfigException {
+  public static void putBoolean(IConfig key, boolean value) {
+    preferences.putBoolean(key.getName(), value);
+  }
+
+  public static boolean getBool(IConfig key) {
+    return preferences.getBoolean(key.getName(), false);
+  }
+
+  public static void setDefaults(Class<?> clazz) throws ConfigException {
     IConfig[] cfgs;
     String name;
     IConfig cfg;
@@ -72,13 +86,15 @@ public class Config {
         preferences.putInt(name, cfg.asInt());
       } else if ( cfg.isDouble() ) {
         preferences.putDouble(name, cfg.asDouble());
+      } else if ( cfg.isBool() ) {
+        preferences.putBoolean(name, cfg.asBool());
       }
     }
 
     validate();
   }
 
-  public void verify(Class<?> clazz) throws ConfigException {
+  public static void verify(Class<?> clazz) throws ConfigException {
     if ( !clazz.isEnum() ) {
       throw new ConfigException("Cannot set config defaults " +
         clazz.toString() + " is not an enum?");
@@ -98,7 +114,7 @@ public class Config {
     }
   }
 
-  public String getConfig() throws ConfigException {
+  public static String getConfig() throws ConfigException {
     ByteArrayOutputStream os = new ByteArrayOutputStream();
     try {
       preferences.exportSubtree(os);
@@ -112,7 +128,7 @@ public class Config {
     return os.toString();
   }
 
-  public void loadConfig(String str) throws ConfigException {
+  public static void loadConfig(String str) throws ConfigException {
     ByteArrayInputStream is = new ByteArrayInputStream(str.getBytes());
     try {
       Preferences.importPreferences(is);
@@ -125,7 +141,7 @@ public class Config {
     }
   }
 
-  public void validate() throws ConfigException {
+  private static void validate() throws ConfigException {
     if ( preferences.get(log_realm, "") == "" ) {
       throw new ConfigException("Defaults missing " + log_realm);
     } else if ( preferences.get(log_config, "") == "" ) {

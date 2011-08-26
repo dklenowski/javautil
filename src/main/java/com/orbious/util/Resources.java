@@ -66,8 +66,8 @@ public class Resources {
 
     f = null;
     try {
-      f = File.createTempFile(Files.prefix(file.getName()), "." +
-            Files.suffix(file.getName()));
+      f = File.createTempFile(Filename.prefix(file.getName()), "." +
+          Filename.suffix(file.getName()));
     } catch ( IOException ioe ) {
       ioe.printStackTrace();
       return null;

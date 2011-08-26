@@ -11,6 +11,9 @@ public interface IConfig {
   public boolean isDouble();
   public double asDouble();
 
+  public boolean isBool();
+  public boolean asBool();
+
   public String getName();
 
 }
