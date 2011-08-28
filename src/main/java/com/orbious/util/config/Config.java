@@ -13,6 +13,8 @@ public class Config {
   protected static final String log_realm = "log_realm";
   protected static final String log_config = "log_config";
 
+  public static final String stored_key = Config.class.getName();
+
   private static Preferences preferences;
 
   static {
@@ -114,7 +116,7 @@ public class Config {
     }
   }
 
-  public static String getConfig() throws ConfigException {
+  public static String xmlstr() throws ConfigException {
     ByteArrayOutputStream os = new ByteArrayOutputStream();
     try {
       preferences.exportSubtree(os);
@@ -128,16 +130,16 @@ public class Config {
     return os.toString();
   }
 
-  public static void loadConfig(String str) throws ConfigException {
-    ByteArrayInputStream is = new ByteArrayInputStream(str.getBytes());
+  public static void loadConfig(String cfgstr) throws ConfigException {
+    ByteArrayInputStream is = new ByteArrayInputStream(cfgstr.getBytes());
     try {
       Preferences.importPreferences(is);
     } catch ( InvalidPreferencesFormatException ipfe ) {
       throw new ConfigException("Invalid preference format for:\n" +
-          str + "\n\n", ipfe);
+          cfgstr + "\n\n", ipfe);
     } catch ( IOException ioe ) {
       throw new ConfigException("IOException parsing config:\n" +
-          str + "\n\n", ioe);
+          cfgstr + "\n\n", ioe);
     }
   }
 

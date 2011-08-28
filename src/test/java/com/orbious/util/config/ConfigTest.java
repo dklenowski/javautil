@@ -50,7 +50,7 @@ public class ConfigTest {
 	  Config.setDefaults(Constants.class);
 	  Config.loadConfig(configstr);
 
-	  assertThat(Config.getConfig(), is(equalTo(configstr)));
+	  assertThat(Config.xmlstr(), is(equalTo(configstr)));
 	}
 
 	public enum Constants implements IConfig {
