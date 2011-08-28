@@ -1,2 +1,6 @@
-mvn -DaltDeploymentRepository=snapshot-repo::default::file:./snapshots/ clean deploy
-mvn -DaltDeploymentRepository=releases::default::file:./releases/ clean deploy
+To build the project run:
+  mvn clean install
+
+To deploy:
+  mvn -DaltDeploymentRepository=snapshot-repo::default::file:./snapshots/ clean deploy
+  mvn -DaltDeploymentRepository=releases::default::file:./releases/ clean deploy
