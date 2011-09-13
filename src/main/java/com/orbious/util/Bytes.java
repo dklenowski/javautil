@@ -9,7 +9,8 @@ import java.io.UnsupportedEncodingException;
 
 public class Bytes {
 
-  public static Object convert(Class<?> clazz, byte[] b) throws UnsupportedEncodingException {
+  public static Object convert(byte[] b, Class<?> clazz)
+      throws UnsupportedEncodingException {
     if ( clazz == String.class ) {
       return bytesToStr(b);
     } else if ( clazz == Integer.class ) {
@@ -23,7 +24,7 @@ public class Bytes {
     return deserialize(b);
   }
 
-  public static byte[] convert(Class<?> clazz, Object obj) {
+  public static byte[] convert(Object obj, Class<?> clazz) {
     if ( clazz == String.class ) {
       return strToBytes((String)obj);
     } else if ( clazz == Integer.class ) {
@@ -97,7 +98,11 @@ public class Bytes {
   }
 
   public static byte[] strToBytes(String str) {
-    return str.getBytes();
+    try {
+      return str.getBytes("UTF-8");
+    } catch ( UnsupportedEncodingException uee ) {
+      return str.getBytes();
+    }
   }
 
   public static String bytesToStr(byte[] b) {

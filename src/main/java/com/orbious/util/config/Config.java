@@ -13,7 +13,9 @@ public class Config {
   protected static final String log_realm = "log_realm";
   protected static final String log_config = "log_config";
 
-  public static final String stored_key = Config.class.getName();
+  public static final String config_hdb_key = Config.class.getName();
+  public static final String config_fdb_idx = "1";
+
 
   private static Preferences preferences;
 
@@ -127,6 +129,7 @@ public class Config {
       throw new ConfigException("IOException retreiving config for " +
           preferences.absolutePath(), ioe);
     }
+
     return os.toString();
   }
 
