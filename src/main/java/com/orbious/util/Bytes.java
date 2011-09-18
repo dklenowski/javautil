@@ -13,6 +13,8 @@ public class Bytes {
       throws UnsupportedEncodingException {
     if ( clazz == String.class ) {
       return bytesToStr(b);
+    } else if ( clazz == Short.class ) {
+      return new Short(bytesToShort(b));
     } else if ( clazz == Integer.class ) {
       return new Integer(bytesToInt(b));
     } else if ( clazz == Long.class ) {
@@ -27,6 +29,8 @@ public class Bytes {
   public static byte[] convert(Object obj, Class<?> clazz) {
     if ( clazz == String.class ) {
       return strToBytes((String)obj);
+    } else if ( clazz == Short.class ) {
+      return shortToBytes(((Short)obj).shortValue());
     } else if ( clazz == Integer.class ) {
       return intToBytes(((Integer)obj).intValue());
     } else if ( clazz == Long.class ) {
@@ -35,8 +39,24 @@ public class Bytes {
       return doubleToBytes(((Double)obj).doubleValue());
     }
 
-    // try tokyocabinet ..
     return serialize(obj);
+  }
+
+  // assumes 2 byte shorts
+  public static byte[] shortToBytes(int i) {
+    byte[] array = new byte[2];
+
+    array[0] = (byte)(0xff & (i >> 8));
+    array[1] = (byte)(0xff & i);
+
+    return array;
+  }
+
+  // assumes 2 byte shorts
+  public static short bytesToShort(byte[] b) {
+    return
+        (short)(((short)(b[0] & 0xff) << 8) |
+                ((short)(b[1] & 0xff)));
   }
 
   // assumes 4 byte ints

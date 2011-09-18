@@ -1,5 +1,6 @@
 package com.orbious.util;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Vector;
 
@@ -37,6 +38,31 @@ public class Strings {
     return(sb.toString());
   }
 
+  public static String cvtIntArrayToString(final int[] buffer, int start, int end) {
+    StringBuilder sb;
+    String spacer;
+
+    sb = new StringBuilder();
+    if ( start < 0 ) {
+      start = 0;
+    }
+
+    if ( end > buffer.length ) {
+      end = buffer.length;
+    }
+
+    spacer =  " ";
+    for ( int i = start; i < end; i++ ) {
+      if ( (i+1) >= end ) {
+        spacer = "";
+      }
+
+      sb.append(buffer[i] + spacer);
+    }
+
+    return sb.toString();
+  }
+
   /**
    * Convert a <code>Vector</code> of <code>String</code>'s to a single
    * <code>String</code> separated by whitespace.
@@ -59,6 +85,16 @@ public class Strings {
     }
 
     return(sb.toString());
+  }
+
+  /**
+   *
+   */
+  public static Vector<String> cvtStringToVector(String str) {
+    String [] a;
+    str = str.replaceFirst("^[\\s]+", "");
+    a = str.split("[\\s]+");
+    return new Vector<String>(Arrays.asList(a));
   }
 
   /**
