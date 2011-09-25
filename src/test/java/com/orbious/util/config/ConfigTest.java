@@ -50,7 +50,12 @@ public class ConfigTest {
 	  Config.setDefaults(Constants.class);
 	  Config.loadConfig(configstr);
 
-	  assertThat(Config.xmlstr(), is(equalTo(configstr)));
+    assertThat(Config.getString(Constants.app_version), is(equalTo("3.0")));
+    assertThat(Config.getString(Constants.log_realm), is(equalTo("logggingrealm")));
+    assertThat(Config.getString(Constants.log_config), is(equalTo("log.config")));
+    assertEquals(60000, Config.getInt(Constants.cache_size));
+    assertEquals(1.0, Config.getDouble(Constants.load_factor), 0.0);
+    assertEquals(true, Config.getBool(Constants.a_bool));
 	}
 
 	public enum Constants implements IConfig {
