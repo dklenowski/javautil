@@ -19,7 +19,6 @@ public class Config {
   private static Preferences preferences;
 
   static {
-    System.out.println("In static initializer block");
     preferences = Preferences.userRoot().node(Config.class.getName());
   }
 
