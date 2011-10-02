@@ -16,10 +16,10 @@ public class Config {
   public static final String config_hdb_key = Config.class.getName();
   public static final String config_fdb_idx = "1";
 
-
   private static Preferences preferences;
 
   static {
+    System.out.println("In static initializer block");
     preferences = Preferences.userRoot().node(Config.class.getName());
   }
 
