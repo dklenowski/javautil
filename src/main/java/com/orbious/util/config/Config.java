@@ -36,6 +36,50 @@ public class Config {
     return preferences.get(log_config, "");
   }
 
+  public static String get(String xmlstr, IConfig key) {
+    ByteArrayOutputStream out;
+    ByteArrayInputStream in;
+    String value;
+    boolean failedImport;
+
+    value = null;
+
+    // export what we allready have
+    out = null;
+    try {
+      out = new ByteArrayOutputStream();
+      preferences.exportNode(out);
+    } catch ( BackingStoreException bse ) {
+      return value;
+    } catch ( IOException ioe ) {
+      return value;
+    }
+
+    failedImport = false;
+    in = new ByteArrayInputStream(xmlstr.getBytes());
+    try {
+      Preferences.importPreferences(in);
+    } catch ( InvalidPreferencesFormatException ipfe ) {
+      failedImport = true;
+    } catch ( IOException ioe ) {
+      failedImport = true;
+    }
+
+    if ( !failedImport ) {
+      value = preferences.get(key.getName(), "");
+    }
+
+    try {
+      Preferences.importPreferences(new ByteArrayInputStream(out.toByteArray()));
+    } catch ( InvalidPreferencesFormatException ignored ) {
+      // this should not happen
+    } catch ( IOException ignored ) {
+      // this should not happen
+    }
+
+    return value;
+  }
+
   public static void putString(IConfig key, String value) {
     preferences.put(key.getName(), value);
   }
@@ -68,6 +112,10 @@ public class Config {
     return preferences.getBoolean(key.getName(), false);
   }
 
+  public static void setLastKnownGood() {
+
+  }
+
   public static void setDefaults(Class<?> clazz) throws ConfigException {
     IConfig[] cfgs;
     String name;
@@ -96,6 +144,22 @@ public class Config {
 
     validate();
   }
+
+  public static void setDefaults(String cfgstr) throws ConfigException {
+    ByteArrayInputStream is = new ByteArrayInputStream(cfgstr.getBytes());
+    try {
+      Preferences.importPreferences(is);
+    } catch ( InvalidPreferencesFormatException ipfe ) {
+      throw new ConfigException("Invalid preference format for:\n" +
+          cfgstr + "\n\n", ipfe);
+    } catch ( IOException ioe ) {
+      throw new ConfigException("IOException parsing config:\n" +
+          cfgstr + "\n\n", ioe);
+    }
+
+    validate();
+  }
+
 
   public static void verify(Class<?> clazz) throws ConfigException {
     if ( !clazz.isEnum() ) {
@@ -130,19 +194,6 @@ public class Config {
     }
 
     return os.toString();
-  }
-
-  public static void loadConfig(String cfgstr) throws ConfigException {
-    ByteArrayInputStream is = new ByteArrayInputStream(cfgstr.getBytes());
-    try {
-      Preferences.importPreferences(is);
-    } catch ( InvalidPreferencesFormatException ipfe ) {
-      throw new ConfigException("Invalid preference format for:\n" +
-          cfgstr + "\n\n", ipfe);
-    } catch ( IOException ioe ) {
-      throw new ConfigException("IOException parsing config:\n" +
-          cfgstr + "\n\n", ioe);
-    }
   }
 
   private static void validate() throws ConfigException {

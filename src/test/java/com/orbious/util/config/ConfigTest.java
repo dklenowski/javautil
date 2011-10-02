@@ -17,7 +17,7 @@ public class ConfigTest {
   "      <map>\n" +
   "        <entry key=\"a_bool\" value=\"true\"/>\n" +
   "        <entry key=\"app_version\" value=\"3.0\"/>\n" +
-  "        <entry key=\"log_realm\" value=\"logggingrealm\"/>\n" +
+  "        <entry key=\"log_realm\" value=\"loggingrealm\"/>\n" +
   "        <entry key=\"logger_realm\" value=\"log-realm\"/>\n" +
   "        <entry key=\"log_config\" value=\"log.config\"/>\n" +
   "        <entry key=\"load_factor\" value=\"1.0\"/>\n" +
@@ -38,7 +38,7 @@ public class ConfigTest {
 	  Config.setDefaults(Constants.class);
 
 	  assertThat(Config.getString(Constants.app_version), is(equalTo("3.0")));
-    assertThat(Config.getString(Constants.log_realm), is(equalTo("logggingrealm")));
+    assertThat(Config.getString(Constants.log_realm), is(equalTo("loggingrealm")));
     assertThat(Config.getString(Constants.log_config), is(equalTo("log.config")));
     assertEquals(50000, Config.getInt(Constants.cache_size));
     assertEquals(1.0, Config.getDouble(Constants.load_factor), 0.0);
@@ -48,19 +48,35 @@ public class ConfigTest {
 	@Test
 	public void loadSave_A$() throws Exception {
 	  Config.setDefaults(Constants.class);
-	  Config.loadConfig(configstr);
+	  Config.setDefaults(configstr);
 
     assertThat(Config.getString(Constants.app_version), is(equalTo("3.0")));
-    assertThat(Config.getString(Constants.log_realm), is(equalTo("logggingrealm")));
+    assertThat(Config.getString(Constants.log_realm), is(equalTo("loggingrealm")));
     assertThat(Config.getString(Constants.log_config), is(equalTo("log.config")));
     assertEquals(60000, Config.getInt(Constants.cache_size));
     assertEquals(1.0, Config.getDouble(Constants.load_factor), 0.0);
     assertEquals(true, Config.getBool(Constants.a_bool));
 	}
 
+	@Test
+	public void get_A$() throws Exception {
+	  String xmlstr;
+	  String actual;
+
+	  Config.setDefaults(Constants.class);
+	  Config.putString(Constants.app_version, "4.0");
+
+	  xmlstr = Config.xmlstr();
+	  actual = Config.get(xmlstr, Constants.log_realm);
+
+	  assertThat(actual, is(equalTo("loggingrealm")));
+	  assertThat(Config.getString(Constants.app_version), is(equalTo("4.0")));
+	}
+
+
 	public enum Constants implements IConfig {
 	  app_version("3.0"),
-	  log_realm("logggingrealm"),
+	  log_realm("loggingrealm"),
 	  log_config("log.config"),
 	  cache_size(50000),
 	  load_factor(1.0),
