@@ -19,7 +19,7 @@ public class Strings {
    * @return    A <code>String</code> extracted from <code>buffer</code>.
    */
 
-  public static String cvtCharArrayToString(final char[] buffer, int start, int end) {
+  public static String cvtCharArray(final char[] buffer, int start, int end) {
     StringBuilder sb;
 
     sb = new StringBuilder();
@@ -38,7 +38,7 @@ public class Strings {
     return(sb.toString());
   }
 
-  public static String cvtIntArrayToString(final int[] buffer, int start, int end) {
+  public static String cvtIntArray(final int[] buffer, int start, int end) {
     StringBuilder sb;
     String spacer;
 
@@ -73,15 +73,18 @@ public class Strings {
    *            contents appended to a <code>String</code>.
    */
 
-  public static String cvtVectorToString(Vector<String> words) {
+  public static String cvtVector(Vector<String> words) {
     StringBuilder sb;
+    String spacer;
 
     sb = new StringBuilder();
+    spacer = " ";
+
     for ( int i = 0; i < words.size(); i++ ) {
-      sb.append(words.get(i));
-      if ( i+1 < words.size() ) {
-        sb.append(" ");
+      if ( (i+1) >= words.size() ) {
+        spacer = "";
       }
+      sb.append(words.get(i) + spacer);
     }
 
     return(sb.toString());
@@ -90,11 +93,30 @@ public class Strings {
   /**
    *
    */
-  public static Vector<String> cvtStringToVector(String str) {
+  public static Vector<String> cvtString(String str) {
     String [] a;
     str = str.replaceFirst("^[\\s]+", "");
     a = str.split("[\\s]+");
     return new Vector<String>(Arrays.asList(a));
+  }
+
+  public static String cvtStringArray(String[] a) {
+    StringBuilder sb;
+    String spacer;
+
+    sb = new StringBuilder();
+    spacer =  " ";
+
+    for ( int i = 0; i < a.length; i++ ) {
+      if ( (i+1) >= a.length ) {
+        spacer = "";
+      }
+
+      sb.append(a[i] + spacer);
+    }
+
+    return sb.toString();
+
   }
 
   /**

@@ -15,7 +15,7 @@ public class StringsTest {
 	}
 
 	@Test
-	public void cvtStringToVector_A$() {
+	public void cvtString_A$() {
 	  String str;
 	  Vector<String> expected;
 	  Vector<String> actual;
@@ -24,24 +24,24 @@ public class StringsTest {
 	  expected = new Vector<String>(
 	      Arrays.asList("a", "test", "string", ",", "there", "should", "be",
 	          "no", "more", "than", "a", "single", "space", "between", "words") );
-	  actual = Strings.cvtStringToVector(str);
+	  actual = Strings.cvtString(str);
 	  assertThat(actual, is(equalTo(expected)));
 
 	  str = "   another   test string 12.4 , 4 .";
 	  expected = new Vector<String>(
 	      Arrays.asList("another", "test", "string", "12.4", ",", "4", ".") );
-    actual = Strings.cvtStringToVector(str);
+    actual = Strings.cvtString(str);
     assertThat(actual, is(equalTo(expected)));
 
     str = "   a   final  test      string    ";
     expected = new Vector<String>(
         Arrays.asList("a", "final", "test", "string") );
-    actual = Strings.cvtStringToVector(str);
+    actual = Strings.cvtString(str);
     assertThat(actual, is(equalTo(expected)));
 	}
 
 	@Test
-	public void cvtIntArrayToString_A$() {
+	public void cvtIntArrray_A$() {
 	  int[] a;
 	  String expected;
 	  String actual;
@@ -49,16 +49,32 @@ public class StringsTest {
 	  a = new int[] { 1, 2, 3, 4, 5 };
 
 	  expected = "1 2 3 4 5";
-	  actual = Strings.cvtIntArrayToString(a, 0, a.length);
+	  actual = Strings.cvtIntArray(a, 0, a.length);
 	  assertThat(actual, is(equalTo(expected)));
 
-	  actual = Strings.cvtIntArrayToString(a, -1, 10);
+	  actual = Strings.cvtIntArray(a, -1, 10);
 	  assertThat(actual, is(equalTo(expected)));
 
     expected = "1 2 3";
-    actual = Strings.cvtIntArrayToString(a, 0, 3);
+    actual = Strings.cvtIntArray(a, 0, 3);
     assertThat(actual, is(equalTo(expected)));
 	}
+
+  @Test
+  public void cvtStringArray_A$() {
+    String[] a;
+    String expected;
+    String actual;
+
+    a = new String[] { "one", "two", "three" };
+
+    expected = "one two three";
+    actual = Strings.cvtStringArray(a);
+    assertThat(actual, is(equalTo(expected)));
+  }
+
+
+
 
 //	@Test
 //	public void cvtCharArrayToString_A$charArray$int$int() throws Exception {
