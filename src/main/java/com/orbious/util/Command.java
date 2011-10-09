@@ -22,7 +22,7 @@ public class Command {
   private static Command instance;
 
   private boolean shutdown = false;
-  private boolean can_exit = false;
+  private boolean can_exit = true;
 
   private Command() { }
 

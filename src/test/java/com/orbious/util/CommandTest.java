@@ -38,17 +38,17 @@ public class CommandTest {
 	@Test
 	public void canExit_A$() throws Exception {
 		Command target = Command.instance();
-    assertThat(target.canExit(), is(equalTo(false)));
+    assertThat(target.canExit(), is(equalTo(true)));
 	}
 
 	@Test
 	public void canExit_A$boolean() throws Exception {
     Command target = Command.instance();
-    target.canExit(true);
-    assertThat(target.canExit(), is(equalTo(true)));
+    target.canExit(false);
+    assertThat(target.canExit(), is(equalTo(false)));
 
     // reset
-    target.canExit(false);
+    target.canExit(true);
 	}
 
 }
