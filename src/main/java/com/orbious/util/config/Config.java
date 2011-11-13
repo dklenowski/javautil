@@ -96,6 +96,14 @@ public class Config {
     return preferences.getInt(key.getName(), -1);
   }
 
+  public static void putFloat(IConfig key, float value) {
+    preferences.putFloat(key.getName(), value);
+  }
+
+  public static float getFloat(IConfig key) {
+    return preferences.getFloat(key.getName(), Float.NaN);
+  }
+
   public static void putDouble(IConfig key, double value) {
     preferences.putDouble(key.getName(), value);
   }
@@ -113,7 +121,7 @@ public class Config {
   }
 
   public static void setLastKnownGood() {
-
+    throw new UnsupportedOperationException("Not yet implemented..");
   }
 
   public static void setDefaults(Class<?> clazz) throws ConfigException {
@@ -135,6 +143,8 @@ public class Config {
         preferences.put(name, cfg.asString());
       } else if ( cfg.isInt() ) {
         preferences.putInt(name, cfg.asInt());
+      } else if ( cfg.isFloat() ) {
+        preferences.putFloat(name, cfg.asFloat());
       } else if ( cfg.isDouble() ) {
         preferences.putDouble(name, cfg.asDouble());
       } else if ( cfg.isBool() ) {

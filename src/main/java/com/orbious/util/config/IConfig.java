@@ -8,6 +8,9 @@ public interface IConfig {
   public boolean isInt();
   public int asInt();
 
+  public boolean isFloat();
+  public float asFloat();
+
   public boolean isDouble();
   public double asDouble();
 

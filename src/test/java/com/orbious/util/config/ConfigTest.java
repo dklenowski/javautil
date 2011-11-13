@@ -22,7 +22,8 @@ public class ConfigTest {
   "        <entry key=\"log_config\" value=\"log.config\"/>\n" +
   "        <entry key=\"load_factor\" value=\"1.0\"/>\n" +
   "        <entry key=\"version\" value=\"3.0\"/>\n" +
-  "        <entry key=\"cache_size\" value=\"60000\"/>\n" + // note the change..
+  "        <entry key=\"cache_size\" value=\"60000\"/>\n" + // note the change (from Constants.class)
+  "        <entry key=\"error_rate\" value=\"1.2f\"/>\n" +  // second change
   "      </map>\n" +
   "    </node>\n" +
   "  </root>\n" +
@@ -41,6 +42,7 @@ public class ConfigTest {
     assertThat(Config.getString(Constants.log_realm), is(equalTo("loggingrealm")));
     assertThat(Config.getString(Constants.log_config), is(equalTo("log.config")));
     assertEquals(50000, Config.getInt(Constants.cache_size));
+    assertEquals(1.1f, Config.getFloat(Constants.error_rate), 0.0);
     assertEquals(1.0, Config.getDouble(Constants.load_factor), 0.0);
     assertEquals(true, Config.getBool(Constants.a_bool));
 	}
@@ -54,6 +56,7 @@ public class ConfigTest {
     assertThat(Config.getString(Constants.log_realm), is(equalTo("loggingrealm")));
     assertThat(Config.getString(Constants.log_config), is(equalTo("log.config")));
     assertEquals(60000, Config.getInt(Constants.cache_size));
+    assertEquals(1.2f, Config.getFloat(Constants.error_rate), 0.0);
     assertEquals(1.0, Config.getDouble(Constants.load_factor), 0.0);
     assertEquals(true, Config.getBool(Constants.a_bool));
 	}
@@ -80,10 +83,12 @@ public class ConfigTest {
 	  log_config("log.config"),
 	  cache_size(50000),
 	  load_factor(1.0),
+	  error_rate(1.1f),
 	  a_bool(true);
 
 	  private String svalue = null;
 	  private int ivalue = -1;
+	  private float fvalue = Float.NaN;
 	  private double dvalue = Double.NaN;
 	  private Boolean bvalue = null;
 
@@ -113,6 +118,14 @@ public class ConfigTest {
 
     private Constants(double value) {
       dvalue = value;
+    }
+
+    public boolean isFloat() {
+      return (!Float.isNaN(fvalue)) ? true : false;
+    }
+
+    public float asFloat() {
+      return fvalue;
     }
 
     public boolean isDouble() {
