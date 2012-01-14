@@ -9,15 +9,9 @@ import name.fraser.neil.plaintext.diff_match_patch.Diff;
 
 public class Strings {
 
-  /**
-   * Extract a <code>String</code> from a character buffer.
-   *
-   * @param buffer     <code>Character</code> buffer.
-   *        start      Start index in <code>buffer</code> to begin extraction.
-   *        end        End index in <code>buffer</code> to stop extraction.
-   *
-   * @return    A <code>String</code> extracted from <code>buffer</code>.
-   */
+  public static String cvtCharArray(final char[] buffer) {
+    return cvtCharArray(buffer, 0, buffer.length);
+  }
 
   public static String cvtCharArray(final char[] buffer, int start, int end) {
     StringBuilder sb;
@@ -36,6 +30,10 @@ public class Strings {
     }
 
     return(sb.toString());
+  }
+
+  public static String cvtIntArray(final int[] buffer) {
+    return cvtIntArray(buffer, 0, buffer.length);
   }
 
   public static String cvtIntArray(final int[] buffer, int start, int end) {
