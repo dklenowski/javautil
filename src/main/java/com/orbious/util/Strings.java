@@ -1,5 +1,6 @@
 package com.orbious.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Vector;
@@ -72,6 +73,33 @@ public class Strings {
    */
 
   public static String cvtVector(Vector<String> words) {
+    StringBuilder sb;
+    String spacer;
+
+    sb = new StringBuilder();
+    spacer = " ";
+
+    for ( int i = 0; i < words.size(); i++ ) {
+      if ( (i+1) >= words.size() ) {
+        spacer = "";
+      }
+      sb.append(words.get(i) + spacer);
+    }
+
+    return(sb.toString());
+  }
+
+  /**
+   * Convert a <code>ArrayList</code> of <code>String</code>'s to a single
+   * <code>String</code> separated by whitespace.
+   *
+   * @param words    A list of <code>String</code>'s to convert.
+   *
+   * @return    The <code>ArrayList</code> with its <code>String</code>
+   *            contents appended to a <code>String</code>.
+   */
+
+  public static String cvtArrayList(ArrayList<String> words) {
     StringBuilder sb;
     String spacer;
 
