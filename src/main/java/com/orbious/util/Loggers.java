@@ -2,7 +2,6 @@ package com.orbious.util;
 
 import java.io.File;
 import java.io.IOException;
-//import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -37,8 +36,8 @@ public class Loggers {
         DOMConfigurator.configure(f.toString());
       } catch ( IOException ioe ) {
         System.err.println("Failed to find log4j resource (" + cfgfile +
-            "), using BasicConfigurator.");
-//        BasicConfigurator.configure();
+            "), using a debug console appender.");
+
         Logger log = Logger.getLogger(Config.logRealm());
         log.setLevel(Level.DEBUG);
         log.addAppender(new ConsoleAppender(new PatternLayout("%d{ISO8601} %-5p  %C{2} (%M:%L) - %m%n") ));
