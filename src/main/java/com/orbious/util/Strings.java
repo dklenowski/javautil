@@ -1,5 +1,9 @@
 package com.orbious.util;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -144,6 +148,19 @@ public class Strings {
     return sb.toString();
 
   }
+
+  public static String read(File f) throws IOException {
+    System.out.println("Reading from " + f);
+    BufferedReader br = new BufferedReader(new FileReader(f));
+
+    StringBuilder sb = new StringBuilder();
+    String line;
+    while ( (line = br.readLine()) != null )
+      sb.append(line + "\n");
+
+    return sb.toString();
+  }
+
 
   /**
    *
