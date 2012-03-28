@@ -11,33 +11,31 @@ public class Bytes {
 
   public static Object convert(byte[] b, Class<?> clazz)
       throws UnsupportedEncodingException {
-    if ( clazz == String.class ) {
+    if ( clazz == String.class )
       return bytesToStr(b);
-    } else if ( clazz == Short.class ) {
+    else if ( clazz == Short.class )
       return new Short(bytesToShort(b));
-    } else if ( clazz == Integer.class ) {
+    else if ( clazz == Integer.class )
       return new Integer(bytesToInt(b));
-    } else if ( clazz == Long.class ) {
+    else if ( clazz == Long.class )
       return new Long(bytesToLong(b));
-    } else if ( clazz == Double.class ) {
+    else if ( clazz == Double.class )
       return new Double(bytesToDouble(b));
-    }
 
     return deserialize(b);
   }
 
   public static byte[] convert(Object obj, Class<?> clazz) {
-    if ( clazz == String.class ) {
+    if ( clazz == String.class )
       return strToBytes((String)obj);
-    } else if ( clazz == Short.class ) {
+    else if ( clazz == Short.class )
       return shortToBytes(((Short)obj).shortValue());
-    } else if ( clazz == Integer.class ) {
+    else if ( clazz == Integer.class )
       return intToBytes(((Integer)obj).intValue());
-    } else if ( clazz == Long.class ) {
+    else if ( clazz == Long.class )
       return longToBytes(((Long)obj).longValue());
-    } else if ( clazz == Double.class ) {
+    else if ( clazz == Double.class )
       return doubleToBytes(((Double)obj).doubleValue());
-    }
 
     return serialize(obj);
   }
@@ -45,10 +43,8 @@ public class Bytes {
   // assumes 2 byte shorts
   public static byte[] shortToBytes(int i) {
     byte[] array = new byte[2];
-
     array[0] = (byte)(0xff & (i >> 8));
     array[1] = (byte)(0xff & i);
-
     return array;
   }
 

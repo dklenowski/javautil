@@ -27,9 +27,8 @@ public class Command {
   private Command() { }
 
   public static Command instance() {
-    if ( instance == null ) {
+    if ( instance == null )
       instance = new Command();
-    }
 
     return instance;
   }

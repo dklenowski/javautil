@@ -15,16 +15,11 @@ public class BytesTest {
 
 	@Test
 	public void arrays() throws Exception {
-	  int[] a;
-	  int[] expected;
-	  int[] actual;
-	  byte[] b;
+	  int[] a = new int[] { 1, 2, 3, 4, 5 };
+	  byte[] b = Bytes.convert(a, int[].class);
 
-	  a = new int[] { 1, 2, 3, 4, 5 };
-	  b = Bytes.convert(a, int[].class);
-
-	  expected = new int[] { 1, 2, 3, 4, 5 };
-	  actual = (int[])Bytes.convert(b, int[].class);
+	  int[] expected = new int[] { 1, 2, 3, 4, 5 };
+	  int[] actual = (int[])Bytes.convert(b, int[].class);
 
 	  assertThat(actual, is(equalTo(expected)));
 	}
@@ -102,35 +97,35 @@ public class BytesTest {
     assertThat(actual, is(equalTo(expected)));
   }
 
-   @Test
-    public void doubles() {
-      double actual, expected;
-      byte[] b;
+  @Test
+  public void doubles() {
+    double actual, expected;
+    byte[] b;
 
-      expected = Double.MIN_VALUE;
-      b = Bytes.doubleToBytes(expected);
-      actual = Bytes.bytesToDouble(b);
-      assertThat(actual, is(equalTo(expected)));
+    expected = Double.MIN_VALUE;
+    b = Bytes.doubleToBytes(expected);
+    actual = Bytes.bytesToDouble(b);
+    assertThat(actual, is(equalTo(expected)));
 
-      expected = Double.MAX_VALUE;
-      b = Bytes.doubleToBytes(expected);
-      actual = Bytes.bytesToDouble(b);
-      assertThat(actual, is(equalTo(expected)));
+    expected = Double.MAX_VALUE;
+    b = Bytes.doubleToBytes(expected);
+    actual = Bytes.bytesToDouble(b);
+    assertThat(actual, is(equalTo(expected)));
 
-      expected = 189L;
-      b = Bytes.doubleToBytes(expected);
-      actual = Bytes.bytesToDouble(b);
-      assertThat(actual, is(equalTo(expected)));
-    }
+    expected = 189L;
+    b = Bytes.doubleToBytes(expected);
+    actual = Bytes.bytesToDouble(b);
+    assertThat(actual, is(equalTo(expected)));
+  }
 
-   @Test
-   public void strings() {
-     String actual, expected;
-     byte[] b;
+  @Test
+  public void strings() {
+    String actual, expected;
+    byte[] b;
 
-     expected = "a string";
-     b = Bytes.strToBytes(expected);
-     actual = Bytes.bytesToStr(b);
-     assertThat(actual, is(equalTo(expected)));
-   }
+    expected = "a string";
+    b = Bytes.strToBytes(expected);
+    actual = Bytes.bytesToStr(b);
+    assertThat(actual, is(equalTo(expected)));
+  }
 }

@@ -21,9 +21,7 @@ public class Loggers {
   }
 
   public static void init() {
-    if ( initComplete ) {
-      return;
-    }
+    if ( initComplete ) return;
     init(new File(Config.logConfig()));
   }
 
@@ -40,7 +38,8 @@ public class Loggers {
 
         Logger log = Logger.getLogger(Config.logRealm());
         log.setLevel(Level.DEBUG);
-        log.addAppender(new ConsoleAppender(new PatternLayout("%d{ISO8601} %-5p  %C{2} (%M:%L) - %m%n") ));
+        log.addAppender(new ConsoleAppender(
+            new PatternLayout("%d{ISO8601} %-5p  %C{2} (%M:%L) - %m%n") ));
       }
     }
 

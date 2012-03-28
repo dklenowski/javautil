@@ -14,57 +14,42 @@ import java.net.URLClassLoader;
 public class Resources {
 
   public static InputStream getResourceStream(File file) {
-    ClassLoader loader = null;
-    InputStream in = null;
+    InputStream in;
 
-    loader = Thread.currentThread().getContextClassLoader();
+    ClassLoader loader = Thread.currentThread().getContextClassLoader();
     if ( loader != null ) {
       in = loader.getResourceAsStream(file.toString());
-      if ( in != null ) {
+      if ( in != null )
         return(in);
-      }
     }
 
     loader = Resources.class.getClassLoader();
     if ( loader != null ) {
       in = loader.getResourceAsStream(file.toString());
-      if ( in != null ) {
+      if ( in != null )
         return(in);
-      }
     }
 
-    return( ClassLoader.getSystemResourceAsStream(file.toString()) );
+    return ClassLoader.getSystemResourceAsStream(file.toString());
   }
 
   public static String getClasspathString(ClassLoader loader) {
-    StringBuilder sb;
-    URL[] urls;
+    StringBuilder sb = new StringBuilder();
+    URL[] urls = ((URLClassLoader)loader).getURLs();
 
-    sb = new StringBuilder();
-    urls = ((URLClassLoader)loader).getURLs();
-
-    for(int i=0; i< urls.length; i++) {
+    for(int i=0; i< urls.length; i++)
       sb.append(urls[i].getFile() + "\n");
-    }
 
     return sb.toString();
   }
 
 
-  public static File getResourceFile(File file)
-    throws IOException {
-    InputStream in;
-    File f;
-    BufferedWriter bw;
-    BufferedReader br;
-    String line;
-
-    in = getResourceStream(file);
-    if ( in == null ) {
+  public static File getResourceFile(File file) throws IOException {
+    InputStream in = getResourceStream(file);
+    if ( in == null )
       throw new FileNotFoundException("Failed to find file " + file.toString());
-    }
 
-    f = null;
+    File f = null;
     try {
       f = File.createTempFile(Filename.prefix(file.getName()), "." +
           Filename.suffix(file.getName()));
@@ -73,12 +58,12 @@ public class Resources {
       return null;
     }
 
-    br = new BufferedReader(new InputStreamReader(in));
-    bw = new BufferedWriter(new FileWriter(f));
+    BufferedReader br = new BufferedReader(new InputStreamReader(in));
+    BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 
-    while ( (line = br.readLine()) != null ) {
+    String line;
+    while ( (line = br.readLine()) != null )
       bw.write(line + "\n");
-    }
 
     br.close();
     bw.close();

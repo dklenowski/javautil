@@ -63,15 +63,11 @@ public class ConfigTest {
 
 	@Test
 	public void get_A$() throws Exception {
-	  String xmlstr;
-	  String actual;
-
 	  Config.setDefaults(Constants.class);
 	  Config.putString(Constants.app_version, "4.0");
 
-	  xmlstr = Config.xmlstr();
-	  actual = Config.get(xmlstr, Constants.log_realm);
-
+	  String xmlstr = Config.xmlstr();
+	  String actual = Config.get(xmlstr, Constants.log_realm);
 	  assertThat(actual, is(equalTo("loggingrealm")));
 	  assertThat(Config.getString(Constants.app_version), is(equalTo("4.0")));
 	}

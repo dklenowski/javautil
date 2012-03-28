@@ -24,11 +24,10 @@ public class HashSets {
     char[] buf = str.toCharArray();
     HashSet<Character> hs = new HashSet<Character>();
 
-    for ( int i = 0; i < buf.length; i++ ) {
-    hs.add(buf[i]);
-    }
+    for ( int i = 0; i < buf.length; i++ )
+      hs.add(buf[i]);
 
-    return(hs);
+    return hs;
   }
 
   /**
@@ -36,11 +35,10 @@ public class HashSets {
    */
   public static HashSet<Integer> cvtListToHashSet(List<Integer> list) {
     HashSet<Integer> hs = new HashSet<Integer>();
-    for ( int i = 0; i < list.size(); i++ ) {
+    for ( int i = 0; i < list.size(); i++ )
       hs.add(list.get(i));
-    }
 
-    return(hs);
+    return hs;
   }
 
   /**
@@ -55,29 +53,21 @@ public class HashSets {
    */
   public static HashSet<String> cvtFileToHashSet(String filename, boolean lowercase)
     throws FileNotFoundException, IOException {
-    HashSet<String> hs;
-    BufferedReader br;
-    InputStream in;
-    String wd;
-
-    br = null;
-
-    in = Resources.getResourceStream(new File(filename));
-    if ( in == null ) {
+    InputStream in = Resources.getResourceStream(new File(filename));
+    if ( in == null )
       throw new FileNotFoundException("Failed to open file " + filename);
-    }
 
-    br = new BufferedReader(new InputStreamReader(in));
-    hs = new HashSet<String>();
+    BufferedReader br = new BufferedReader(new InputStreamReader(in));
+    HashSet<String> hs = new HashSet<String>();
 
+    String wd;
     while ( (wd = br.readLine()) != null ) {
       if ( !wd.matches("#.*") ) {
         // ignore comments.
-        if ( lowercase ) {
+        if ( lowercase )
           hs.add(wd.toLowerCase());
-        } else {
+        else
           hs.add(wd);
-        }
       }
     }
 

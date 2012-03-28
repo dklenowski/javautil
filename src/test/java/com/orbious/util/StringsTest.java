@@ -62,14 +62,9 @@ public class StringsTest {
 
   @Test
   public void cvtStringArray_A$() {
-    String[] a;
-    String expected;
-    String actual;
-
-    a = new String[] { "one", "two", "three" };
-
-    expected = "one two three";
-    actual = Strings.cvtStringArray(a);
+    String[] a = new String[] { "one", "two", "three" };
+    String expected = "one two three";
+    String actual = Strings.cvtStringArray(a);
     assertThat(actual, is(equalTo(expected)));
   }
 }

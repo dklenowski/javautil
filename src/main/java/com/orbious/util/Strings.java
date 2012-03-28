@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Vector;
-
 import name.fraser.neil.plaintext.diff_match_patch;
 import name.fraser.neil.plaintext.diff_match_patch.Diff;
 
@@ -19,22 +18,14 @@ public class Strings {
   }
 
   public static String cvtCharArray(final char[] buffer, int start, int end) {
-    StringBuilder sb;
+    if ( start < 0 ) start = 0;
+    if ( end > buffer.length ) end = buffer.length;
 
-    sb = new StringBuilder();
-    if ( start < 0 ) {
-      start = 0;
-    }
-
-    if ( end > buffer.length ) {
-      end = buffer.length;
-    }
-
-    for ( int i = start; i < end; i++ ) {
+    StringBuilder sb = new StringBuilder();
+    for ( int i = start; i < end; i++ )
       sb.append(buffer[i]);
-    }
 
-    return(sb.toString());
+    return sb.toString();
   }
 
   public static String cvtIntArray(final int[] buffer) {
@@ -42,24 +33,14 @@ public class Strings {
   }
 
   public static String cvtIntArray(final int[] buffer, int start, int end) {
-    StringBuilder sb;
-    String spacer;
+    if ( start < 0 ) start = 0;
+    if ( end > buffer.length ) end = buffer.length;
 
-    sb = new StringBuilder();
-    if ( start < 0 ) {
-      start = 0;
-    }
+    String spacer =  " ";
+    StringBuilder sb = new StringBuilder();
 
-    if ( end > buffer.length ) {
-      end = buffer.length;
-    }
-
-    spacer =  " ";
     for ( int i = start; i < end; i++ ) {
-      if ( (i+1) >= end ) {
-        spacer = "";
-      }
-
+      if ( (i+1) >= end ) spacer = "";
       sb.append(buffer[i] + spacer);
     }
 
@@ -77,20 +58,15 @@ public class Strings {
    */
 
   public static String cvtVector(Vector<String> words) {
-    StringBuilder sb;
-    String spacer;
-
-    sb = new StringBuilder();
-    spacer = " ";
+    String spacer = " ";
+    StringBuilder sb = new StringBuilder();
 
     for ( int i = 0; i < words.size(); i++ ) {
-      if ( (i+1) >= words.size() ) {
-        spacer = "";
-      }
+      if ( (i+1) >= words.size() ) spacer = "";
       sb.append(words.get(i) + spacer);
     }
 
-    return(sb.toString());
+    return sb.toString();
   }
 
   /**
@@ -104,57 +80,44 @@ public class Strings {
    */
 
   public static String cvtArrayList(ArrayList<String> words) {
-    StringBuilder sb;
-    String spacer;
-
-    sb = new StringBuilder();
-    spacer = " ";
+    String spacer = " ";
+    StringBuilder sb = new StringBuilder();
 
     for ( int i = 0; i < words.size(); i++ ) {
-      if ( (i+1) >= words.size() ) {
-        spacer = "";
-      }
+      if ( (i+1) >= words.size() ) spacer = "";
       sb.append(words.get(i) + spacer);
     }
 
-    return(sb.toString());
+    return sb.toString();
   }
 
   /**
    *
    */
   public static Vector<String> cvtString(String str) {
-    String [] a;
     str = str.replaceFirst("^[\\s]+", "");
-    a = str.split("[\\s]+");
+    String[] a = str.split("[\\s]+");
     return new Vector<String>(Arrays.asList(a));
   }
 
   public static String cvtStringArray(String[] a) {
-    StringBuilder sb;
-    String spacer;
-
-    sb = new StringBuilder();
-    spacer =  " ";
+    String spacer =  " ";
+    StringBuilder sb = new StringBuilder();
 
     for ( int i = 0; i < a.length; i++ ) {
-      if ( (i+1) >= a.length ) {
-        spacer = "";
-      }
+      if ( (i+1) >= a.length ) spacer = "";
 
       sb.append(a[i] + spacer);
     }
 
     return sb.toString();
-
   }
 
   public static String read(File f) throws IOException {
-    System.out.println("Reading from " + f);
     BufferedReader br = new BufferedReader(new FileReader(f));
 
-    StringBuilder sb = new StringBuilder();
     String line;
+    StringBuilder sb = new StringBuilder();
     while ( (line = br.readLine()) != null )
       sb.append(line + "\n");
 

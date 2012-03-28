@@ -9,6 +9,6 @@ public class Dates {
 
   public static String nowAsBackupStr() {
     SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd-HH:mm:ss");
-    return fmt.format( new Date() );
+    return fmt.format(new Date());
   }
 }
