@@ -14,6 +14,9 @@ public interface IConfig {
   public boolean isDouble();
   public double asDouble();
 
+  public boolean isLong();
+  public long asLong();
+
   public boolean isBool();
   public boolean asBool();
 

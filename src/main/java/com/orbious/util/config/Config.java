@@ -112,6 +112,15 @@ public class Config {
     return preferences.getDouble(key.getName(), Double.NaN);
   }
 
+  public static void putLong(IConfig key, long value) {
+    preferences.putLong(key.getName(), value);
+  }
+
+  public static long getLong(IConfig key) {
+    return preferences.getLong(key.getName(), -1);
+  }
+
+
   public static void putBoolean(IConfig key, boolean value) {
     preferences.putBoolean(key.getName(), value);
   }
@@ -143,6 +152,8 @@ public class Config {
         preferences.put(name, cfg.asString());
       } else if ( cfg.isInt() ) {
         preferences.putInt(name, cfg.asInt());
+      } else if ( cfg.isLong() ) {
+        preferences.putLong(name, cfg.asLong());
       } else if ( cfg.isFloat() ) {
         preferences.putFloat(name, cfg.asFloat());
       } else if ( cfg.isDouble() ) {

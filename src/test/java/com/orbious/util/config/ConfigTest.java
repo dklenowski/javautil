@@ -86,6 +86,7 @@ public class ConfigTest {
 	  private int ivalue = -1;
 	  private float fvalue = Float.NaN;
 	  private double dvalue = Double.NaN;
+	  private long lvalue = -1;
 	  private Boolean bvalue = null;
 
 	  private Constants(String value) {
@@ -130,6 +131,14 @@ public class ConfigTest {
 
     public double asDouble() {
       return dvalue;
+    }
+
+    public boolean isLong() {
+      return (lvalue != -1) ? true : false;
+    }
+
+    public long asLong() {
+      return lvalue;
     }
 
     private Constants(boolean value) {
