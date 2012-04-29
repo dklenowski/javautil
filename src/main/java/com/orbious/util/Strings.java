@@ -1,8 +1,10 @@
 package com.orbious.util;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -124,6 +126,11 @@ public class Strings {
     return sb.toString();
   }
 
+  public static void write(File f, String buffer) throws IOException {
+    BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+    bw.write(buffer);
+    bw.close();
+  }
 
   /**
    *
