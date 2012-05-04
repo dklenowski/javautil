@@ -18,7 +18,7 @@ public class FileSys {
    *
    * @return
    */
-  public static File createTempDir() {
+  public static synchronized File createTempDir() {
     File baseDir = new File(System.getProperty("java.io.tmpdir"));
     String baseName = System.currentTimeMillis() + "-";
 
