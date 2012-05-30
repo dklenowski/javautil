@@ -18,7 +18,7 @@ public class FileSys {
    *
    * @return
    */
-  public static File createTempDir() {
+  public static synchronized File createTempDir() {
     File baseDir = new File(System.getProperty("java.io.tmpdir"));
     String baseName = System.currentTimeMillis() + "-";
 
@@ -37,7 +37,7 @@ public class FileSys {
    * From package org.apache.commons.io
    */
 
-  public static void copyFile(File srcFile, File destFile,
+  public static synchronized void copyFile(File srcFile, File destFile,
       boolean preserveFileDate) throws IOException, FileNotFoundException {
     if (srcFile == null)
       throw new NullPointerException("Source must not be null");
