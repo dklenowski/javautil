@@ -122,6 +122,10 @@ public class Strings {
     StringBuilder sb = new StringBuilder();
     while ( (line = br.readLine()) != null )
       sb.append(line + "\n");
+    
+    try {
+      br.close();
+    } catch ( IOException ignored ) { }
 
     return sb.toString();
   }
