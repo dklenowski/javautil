@@ -42,7 +42,8 @@ public class IntBytePacker {
     } else if ( (byte)(0xff & i) == 0 ) {
       shift = 0;
     } else {
-      throw new ArrayIndexOutOfBoundsException("No space left in " + i);
+      throw new ArrayIndexOutOfBoundsException("No space left in " + 
+          Integer.toHexString(i) + " adding " + (int)b);
     }
     
     return ((int)b & 0xff) << shift | i;
