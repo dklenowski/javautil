@@ -30,7 +30,7 @@ public class IntBytePacker {
     return ((int)b & 0xff) << shift | i;
   }
   
-  public static int setnext(int i, byte b) {
+  public static int setnext2(int i, int val) {
     int shift;
     
     if ( (byte)(0xff & (i >> 24)) == 0 ) {
@@ -43,9 +43,10 @@ public class IntBytePacker {
       shift = 0;
     } else {
       throw new ArrayIndexOutOfBoundsException("No space left in " + 
-          Integer.toHexString(i) + " adding " + (int)b);
+          Integer.toHexString(i) + " adding " + val + "\n");
     }
     
+    byte b = (byte)val;
     return ((int)b & 0xff) << shift | i;
   }
   

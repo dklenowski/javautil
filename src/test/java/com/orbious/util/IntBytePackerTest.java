@@ -79,10 +79,10 @@ public class IntBytePackerTest {
     byte[] b;
 
     in = 0;
-    in = IntBytePacker.setnext(in, (byte)1);
-    in = IntBytePacker.setnext(in, (byte)2);
-    in = IntBytePacker.setnext(in, (byte)3);
-    in = IntBytePacker.setnext(in, (byte)4);
+    in = IntBytePacker.setnext2(in, 1);
+    in = IntBytePacker.setnext2(in, 2);
+    in = IntBytePacker.setnext2(in, 3);
+    in = IntBytePacker.setnext2(in, 4);
     
     b =  IntBytePacker.unpack(in);
     for ( int i = 0; i < b.length; i++ ) 
