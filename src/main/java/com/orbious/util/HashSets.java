@@ -11,6 +11,8 @@ import java.util.HashSet;
 
 public class HashSets {
 
+  private HashSets() { }
+  
   /**
    * Convert the contents of a <code>String</code> to a
    * <code>HashSet</code> separated on <code>Character</code> boundaries.

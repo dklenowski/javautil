@@ -15,6 +15,8 @@ import name.fraser.neil.plaintext.diff_match_patch.Diff;
 
 public class Strings {
 
+  private Strings() { }
+  
   public static String cvtCharArray(final char[] buffer) {
     return cvtCharArray(buffer, 0, buffer.length);
   }
@@ -128,6 +130,24 @@ public class Strings {
     } catch ( IOException ignored ) { }
 
     return sb.toString();
+  }
+  
+  public static String[] readAsArray(File f) throws IOException {
+    BufferedReader br = new BufferedReader(new FileReader(f));
+
+    String line;
+    ArrayList<String> al = new ArrayList<String>();
+    while ( (line = br.readLine()) != null ) {
+      al.add( line );
+    }
+    
+    try {
+      br.close();
+    } catch ( IOException ignored ) { }
+
+    String[] a = new String[al.size()];
+    al.toArray(a);
+    return a;
   }
 
   public static void write(File f, String buffer) throws IOException {

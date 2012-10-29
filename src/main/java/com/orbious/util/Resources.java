@@ -12,6 +12,8 @@ import java.net.URL;
 import java.net.URLClassLoader;
 
 public class Resources {
+  
+  private Resources() { } 
 
   public static InputStream getResourceStream(File file) {
     InputStream in;

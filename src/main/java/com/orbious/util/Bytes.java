@@ -8,6 +8,8 @@ import java.io.ObjectOutputStream;
 import java.io.UnsupportedEncodingException;
 
 public class Bytes {
+  
+  private Bytes() { }
 
   public static Object convert(byte[] b, Class<?> clazz)
       throws UnsupportedEncodingException {

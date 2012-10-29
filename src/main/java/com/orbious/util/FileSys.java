@@ -13,6 +13,8 @@ public class FileSys {
   private static final int TEMP_DIR_ATTEMPTS = 10000;
   private static final long FILE_COPY_BUFFER_SIZE = 1024*1024*30;
 
+  private FileSys() { }
+  
   /**
    * From package com.google.common.io.Files;
    *
