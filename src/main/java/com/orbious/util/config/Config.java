@@ -24,19 +24,19 @@ public class Config {
 
   private Config() { }
 
-  public static String appVersion() {
+  public static synchronized String appVersion() {
     return preferences.get(app_version, "");
   }
 
-  public static String logRealm() {
+  public static synchronized String logRealm() {
     return preferences.get(log_realm, "");
   }
 
-  public static String logConfig() {
+  public static synchronized String logConfig() {
     return preferences.get(log_config, "");
   }
 
-  public static String get(String xmlstr, IConfig key) {
+  public static synchronized String get(String xmlstr, IConfig key) {
     ByteArrayOutputStream out;
     ByteArrayInputStream in;
     String value;
@@ -80,60 +80,60 @@ public class Config {
     return value;
   }
 
-  public static void putString(IConfig key, String value) {
+  public static synchronized void putString(IConfig key, String value) {
     preferences.put(key.getName(), value);
   }
 
-  public static String getString(IConfig key) {
+  public static synchronized String getString(IConfig key) {
     return preferences.get(key.getName(), "");
   }
 
-  public static void putInt(IConfig key, int value) {
+  public static synchronized void putInt(IConfig key, int value) {
     preferences.putInt(key.getName(), value);
   }
 
-  public static int getInt(IConfig key) {
+  public static synchronized int getInt(IConfig key) {
     return preferences.getInt(key.getName(), -1);
   }
 
-  public static void putFloat(IConfig key, float value) {
+  public static synchronized void putFloat(IConfig key, float value) {
     preferences.putFloat(key.getName(), value);
   }
 
-  public static float getFloat(IConfig key) {
+  public static synchronized float getFloat(IConfig key) {
     return preferences.getFloat(key.getName(), Float.NaN);
   }
 
-  public static void putDouble(IConfig key, double value) {
+  public static synchronized void putDouble(IConfig key, double value) {
     preferences.putDouble(key.getName(), value);
   }
 
-  public static double getDouble(IConfig key) {
+  public static synchronized double getDouble(IConfig key) {
     return preferences.getDouble(key.getName(), Double.NaN);
   }
 
-  public static void putLong(IConfig key, long value) {
+  public static synchronized void putLong(IConfig key, long value) {
     preferences.putLong(key.getName(), value);
   }
 
-  public static long getLong(IConfig key) {
+  public static synchronized long getLong(IConfig key) {
     return preferences.getLong(key.getName(), -1);
   }
 
 
-  public static void putBoolean(IConfig key, boolean value) {
+  public static synchronized void putBoolean(IConfig key, boolean value) {
     preferences.putBoolean(key.getName(), value);
   }
 
-  public static boolean getBool(IConfig key) {
+  public static synchronized boolean getBool(IConfig key) {
     return preferences.getBoolean(key.getName(), false);
   }
 
-  public static void setLastKnownGood() {
+  public static synchronized void setLastKnownGood() {
     throw new UnsupportedOperationException("Not yet implemented..");
   }
 
-  public static void setDefaults(Class<?> clazz) throws ConfigException {
+  public static synchronized void setDefaults(Class<?> clazz) throws ConfigException {
     IConfig[] cfgs;
     String name;
     IConfig cfg;
@@ -166,7 +166,7 @@ public class Config {
     validate();
   }
 
-  public static void setDefaults(String cfgstr) throws ConfigException {
+  public static synchronized void setDefaults(String cfgstr) throws ConfigException {
     ByteArrayInputStream is = new ByteArrayInputStream(cfgstr.getBytes());
     try {
       Preferences.importPreferences(is);
@@ -182,7 +182,7 @@ public class Config {
   }
 
 
-  public static void verify(Class<?> clazz) throws ConfigException {
+  public static synchronized void verify(Class<?> clazz) throws ConfigException {
     if ( !clazz.isEnum() ) {
       throw new ConfigException("Cannot set config defaults " +
         clazz.toString() + " is not an enum?");
@@ -202,7 +202,7 @@ public class Config {
     }
   }
 
-  public static String xmlstr() throws ConfigException {
+  public static synchronized String xmlstr() throws ConfigException {
     ByteArrayOutputStream os = new ByteArrayOutputStream();
     try {
       preferences.exportSubtree(os);
@@ -217,7 +217,7 @@ public class Config {
     return os.toString();
   }
 
-  private static void validate() throws ConfigException {
+  private static synchronized void validate() throws ConfigException {
     if ( preferences.get(log_realm, "") == "" ) {
       throw new ConfigException("Defaults missing " + log_realm);
     } else if ( preferences.get(log_config, "") == "" ) {
