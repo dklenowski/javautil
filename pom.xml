@@ -4,11 +4,16 @@
   <groupId>com.orbious.util</groupId>
   <artifactId>javautil</artifactId>
   <packaging>jar</packaging>
-  <version>3.3</version>
+  <version>3.4</version>
   <name>javautil</name>
   <description>Java Utilities for Orbious.</description>
   <url>https://github.com/dklenowski/javautil</url>
   <dependencies>
+    <dependency>
+      <groupId>trove</groupId>
+      <artifactId>trove</artifactId>
+      <version>3.0.0</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
