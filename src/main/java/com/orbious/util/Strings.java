@@ -50,6 +50,26 @@ public class Strings {
 
     return sb.toString();
   }
+  
+  public static String cvtDoubleArray(final double[] buffer) {
+    return cvtDoubleArray(buffer, 0, buffer.length);
+  }
+
+  public static String cvtDoubleArray(final double[] buffer, int start, int end) {
+    if ( start < 0 ) start = 0;
+    if ( end > buffer.length ) end = buffer.length;
+
+    String spacer =  " ";
+    StringBuilder sb = new StringBuilder();
+
+    for ( int i = start; i < end; i++ ) {
+      if ( (i+1) >= end ) spacer = "";
+      sb.append(buffer[i] + spacer);
+    }
+
+    return sb.toString();
+  }
+
 
   /**
    * Convert a <code>Vector</code> of <code>String</code>'s to a single

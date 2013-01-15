@@ -10,6 +10,24 @@ public class IntBytePacker {
         ((int)(l & 0xff));
   }
   
+  public static int findshift(int i) {
+    if ( (byte)(0xff & (i >> 24)) == 0 ) {
+      return 24;
+    } else if ( (byte)(0xff & (i >> 16)) == 0 ) {
+      return 16;
+    } else if ( (byte)(0xff & (i >> 8)) == 0 ) {
+      return 8;
+    } else if ( (byte)(0xff & i) == 0 ) {
+      return 0;
+    } else {
+      return -1;
+    }
+  }
+  public static int setwithshift(int i, int val, int shift) {
+    byte b = (byte)val;
+    return ((int)b & 0xff) << shift | i;
+  }
+  
   public static int set(int i, int idx, byte b) {
     int shift;
     switch ( idx ) {
