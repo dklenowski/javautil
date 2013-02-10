@@ -1,9 +1,11 @@
 package com.orbious.util;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public final class ArrayEntry {
+public final class ArrayEntry implements Serializable {
   
+  private static final long serialVersionUID = 1L;
   public final int[] entry;
   
   public ArrayEntry(int[] entry) {
