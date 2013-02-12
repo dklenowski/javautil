@@ -22,13 +22,23 @@ public class HashSets {
    * @return    A <code>HashSet</code> containing the contents of the
    *            <code>String</code> <code>str</code>.
    */
-  public static HashSet<Character> cvtStringToHashSet(String str) {
+  public static HashSet<Character> cvtStringToCharHashSet(String str) {
     char[] buf = str.toCharArray();
     HashSet<Character> hs = new HashSet<Character>();
 
     for ( int i = 0; i < buf.length; i++ )
       hs.add(buf[i]);
 
+    return hs;
+  }
+  
+  public static HashSet<String> cvtStringToStrHashSet(String str) {
+    char[] buf = str.toCharArray();
+    HashSet<String> hs = new HashSet<String>();
+    
+    for ( int i = 0; i < buf.length; i++ ) 
+      hs.add( Character.toString(buf[i]) );
+      
     return hs;
   }
 

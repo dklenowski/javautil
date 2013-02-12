@@ -4,7 +4,7 @@
   <groupId>com.orbious.util</groupId>
   <artifactId>javautil</artifactId>
   <packaging>jar</packaging>
-  <version>3.8</version>
+  <version>3.9</version>
   <name>javautil</name>
   <description>Java Utilities for Orbious.</description>
   <url>https://github.com/dklenowski/javautil</url>
