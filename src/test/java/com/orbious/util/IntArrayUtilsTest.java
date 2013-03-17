@@ -43,31 +43,31 @@ public class IntArrayUtilsTest {
     int[] a;
     
     a = new int[] { 1, 2, 3, 4, 5 };
-    Assert.assertTrue(IntArrayUtils.contains(a, new int[] { 1, 3, 5 }));
-    Assert.assertTrue(IntArrayUtils.contains(new int[] { 1, 3, 5 }, a));
-    Assert.assertTrue(IntArrayUtils.contains(a, new int[] { 1, 2, 3, 4, 5  }));
-    Assert.assertTrue(IntArrayUtils.contains(new int[] { 1, 2, 3, 4, 5  }, a));
-    Assert.assertFalse(IntArrayUtils.contains(a, new int[] { 1, 9 }));
-    Assert.assertFalse(IntArrayUtils.contains(new int[] { 1, 9  }, a));    
+    Assert.assertTrue(IntArrayUtils.contains(a, new int[] { 1, 3, 5 }, -1, false));
+    Assert.assertTrue(IntArrayUtils.contains(new int[] { 1, 3, 5 }, a, -1, false));
+    Assert.assertTrue(IntArrayUtils.contains(a, new int[] { 1, 2, 3, 4, 5 }, -1, false));
+    Assert.assertTrue(IntArrayUtils.contains(new int[] { 1, 2, 3, 4, 5  }, a, -1, false));
+    Assert.assertFalse(IntArrayUtils.contains(a, new int[] { 1, 9 }, -1, false));
+    Assert.assertFalse(IntArrayUtils.contains(new int[] { 1, 9  }, a, -1, false));    
     
     
     a = new int[] { 1, 2, 3, 4, 5 };
-    Assert.assertTrue(IntArrayUtils.contains(a, new int[] { 1, 2, 3, 4, 5 }));
-    Assert.assertTrue(IntArrayUtils.contains(new int[] { 1, 2, 3, 4, 5 }, a));
-    Assert.assertFalse(IntArrayUtils.contains(a, new int[] { 1, 2, 3, 4, 6 }));
-    Assert.assertFalse(IntArrayUtils.contains(new int[] { 1, 2, 3, 4, 6 }, a));  
+    Assert.assertTrue(IntArrayUtils.contains(a, new int[] { 1, 2, 3, 4, 5 }, -1, false));
+    Assert.assertTrue(IntArrayUtils.contains(new int[] { 1, 2, 3, 4, 5 }, a, -1, false));
+    Assert.assertFalse(IntArrayUtils.contains(a, new int[] { 1, 2, 3, 4, 6 }, -1, false));
+    Assert.assertFalse(IntArrayUtils.contains(new int[] { 1, 2, 3, 4, 6 }, a, -1, false));  
     
     a = new int[] { 1, 1, 3, 4, 5 };
-    Assert.assertTrue(IntArrayUtils.contains(a, new int[] { 1, 1, 4, 5 }));
-    Assert.assertTrue(IntArrayUtils.contains(a, new int[] { 1, 1, 4 }));
-    Assert.assertTrue(IntArrayUtils.contains(a, new int[] { 1, 1, 4, -1 }));
-    Assert.assertFalse(IntArrayUtils.contains(a, new int[] { 1, 1, 1, 4, 5 }));
+    Assert.assertTrue(IntArrayUtils.contains(a, new int[] { 1, 1, 4, 5 }, -1, false));
+    Assert.assertTrue(IntArrayUtils.contains(a, new int[] { 1, 1, 4 }, -1, false));
+    Assert.assertTrue(IntArrayUtils.contains(a, new int[] { 1, 1, 4, -1 }, -1, true));
+    Assert.assertFalse(IntArrayUtils.contains(a, new int[] { 1, 1, 1, 4, 5 }, -1, false));
     
     a = new int[] { 1, 3, 3, 6, 5 };
-    Assert.assertTrue(IntArrayUtils.contains(a, new int[] { 1, 5 }));
-    Assert.assertTrue(IntArrayUtils.contains(a, new int[] { 1, 3, 5 }));
-    Assert.assertTrue(IntArrayUtils.contains(a, new int[] { 1, 3, 5, -1 }));
-    Assert.assertTrue(IntArrayUtils.contains(a, new int[] { 1, 3, 3, 5 }));
+    Assert.assertTrue(IntArrayUtils.contains(a, new int[] { 1, 5 }, -1, false));
+    Assert.assertTrue(IntArrayUtils.contains(a, new int[] { 1, 3, 5 }, -1, false));
+    Assert.assertTrue(IntArrayUtils.contains(a, new int[] { 1, 3, 5, -1 }, -1, true));
+    Assert.assertTrue(IntArrayUtils.contains(a, new int[] { 1, 3, 3, 5 }, -1, false));
   }
   
   @Test
@@ -75,10 +75,17 @@ public class IntArrayUtilsTest {
     int[] a;
     
     a = new int[] { 5, 3, 2, 9 };
-    Assert.assertTrue(IntArrayUtils.contains(a, new int[] { 5, 3, 2, 9, -1 }));
-    Assert.assertTrue(IntArrayUtils.contains(new int[] { 5, 3, 2, 9, -1 }, a));
+    Assert.assertTrue(IntArrayUtils.contains(a, new int[] { 5, 3, 2, 9, -1 }, -1, false));
+    Assert.assertTrue(IntArrayUtils.contains(new int[] { 5, 3, 2, 9, -1 }, a, -1, false));
   }
   
+  @Test
+  public void contains3() {
+    Assert.assertTrue(
+        IntArrayUtils.contains(
+            new int[] { 8, 9, 3, 4, 5 },
+            new int[] { 2, 3, 4, 5}, 3, false));
+  }
   
   @Test
   public void allpad() {

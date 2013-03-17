@@ -68,60 +68,61 @@ public class IntArrayUtils {
     return false;
   }
   
-  
-  public static boolean contains(int[] a, int[] b) {
-    int alen, blen;
-    int[] master;
-    int masterlen;
-    int[] child;
-    int childlen;
-
-    alen = a.length-1;
-    while ( alen >= 0 && a[alen] == -1 ) {
-      alen--;
-    }
-    alen++;
+  //
+  // match items in the smaller array to the larger array
+  // order not considered
+  //
+  public static boolean contains(int[] a, int[] b, int min, boolean padded) {
+    int[] ua;
+    int[] ub;
     
-    blen = b.length-1;
-    while ( blen >= 0 && b[blen] == -1 ) {
-      blen--;
-    }
-    blen++;
-    
-    if ( alen < blen ) {
-      master = a;
-      masterlen = alen;
-      child = b;
-      childlen = blen;
+    if ( !padded ) {
+      ua = a;
+      ub = b;
     } else {
-      master = b;
-      masterlen = blen;
-      child = a;
-      childlen = alen;
+      ua = unpad(a);
+      ub = unpad(b);
     }
+
+    int[] pattern;
+    int[] text;
+    
+    if ( ua.length > ub.length ) {
+      pattern = ub;
+      text = ua;
+    } else {
+      pattern = ua;
+      text = ub;
+    }
+
+    if ( min == -1 ) min = pattern.length;
     
     int i, j;
-    boolean matched[] = new boolean[child.length];
-    boolean fnd;
+    boolean matched[] = new boolean[pattern.length];
+    int ct = 0;
     
     i = 0;
-    while ( i < masterlen ) {
+    while ( i < text.length ) {
       j = 0;
-      fnd = false;
-      while ( j < childlen ) {
-        if ( !matched[j] && (master[i] == child[j]) ) {
-          matched[j] = fnd = true;
+      while ( j < pattern.length ) {
+        if ( matched[j] ) {
+          j++;
+          continue;
+        } else if ( text[i] == pattern[j] ) {
+          matched[j] = true;
+          ct++;
           break;
         }
-        
         j++;
       }
-
-      if ( !fnd ) return false;
+      
+      if ( ct >= min ) return true;
       i++;
     }
     
-    return true;
+    
+    if ( ct >= min ) return true;
+    return false;
   }
   
   public static boolean equals(int[] a, int[] b) {
