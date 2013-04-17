@@ -1,3 +1,11 @@
+Dependency:
+
+  This package requires trove which is not in the standard maven repositories.
+  Assuming you download maven to a directory called ../thirdparty, you can install locally using:
+
+  mvn install:install-file -Dfile=../thirdparty/trove-3.0.0.jar -DgroupId=trove \
+      -DartifactId=trove -Dversion=3.0.0 -Dpackaging=jar
+
 To build the project run:
   mvn clean install
 
