@@ -1,5 +1,7 @@
 package com.orbious.util;
 
+import gnu.trove.set.hash.TIntHashSet;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -75,19 +77,19 @@ public class Strings {
    * Convert a <code>Vector</code> of <code>String</code>'s to a single
    * <code>String</code> separated by whitespace.
    *
-   * @param words    A list of <code>String</code>'s to convert.
+   * @param buffer    A list of <code>String</code>'s to convert.
    *
    * @return    The <code>Vector</code> with its <code>String</code>
    *            contents appended to a <code>String</code>.
    */
 
-  public static String cvtVector(Vector<String> words) {
+  public static String cvtVector(Vector<String> buffer) {
     String spacer = " ";
     StringBuilder sb = new StringBuilder();
 
-    for ( int i = 0; i < words.size(); i++ ) {
-      if ( (i+1) >= words.size() ) spacer = "";
-      sb.append(words.get(i) + spacer);
+    for ( int i = 0; i < buffer.size(); i++ ) {
+      if ( (i+1) >= buffer.size() ) spacer = "";
+      sb.append(buffer.get(i) + spacer);
     }
 
     return sb.toString();
@@ -97,22 +99,27 @@ public class Strings {
    * Convert a <code>ArrayList</code> of <code>String</code>'s to a single
    * <code>String</code> separated by whitespace.
    *
-   * @param words    A list of <code>String</code>'s to convert.
+   * @param buffer    A list of <code>String</code>'s to convert.
    *
    * @return    The <code>ArrayList</code> with its <code>String</code>
    *            contents appended to a <code>String</code>.
    */
 
-  public static String cvtArrayList(ArrayList<String> words) {
+  public static String cvtArrayList(ArrayList<String> buffer) {
     String spacer = " ";
     StringBuilder sb = new StringBuilder();
 
-    for ( int i = 0; i < words.size(); i++ ) {
-      if ( (i+1) >= words.size() ) spacer = "";
-      sb.append(words.get(i) + spacer);
+    for ( int i = 0; i < buffer.size(); i++ ) {
+      if ( (i+1) >= buffer.size() ) spacer = "";
+      sb.append(buffer.get(i) + spacer);
     }
 
     return sb.toString();
+  }
+  
+  public static String cvtTIntHashSet(TIntHashSet buffer) {
+    int[] a = buffer.toArray();
+    return cvtIntArray(a);
   }
 
   /**
