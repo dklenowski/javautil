@@ -67,4 +67,23 @@ public class StringsTest {
     String actual = Strings.cvtStringArray(a);
     assertThat(actual, is(equalTo(expected)));
   }
+  
+  @Test
+  public void cvtArray() {
+    String str;
+    Object o;
+    
+    int[] a = new int[] { 1, 2, 3, 4, 5 };
+    
+    o = a;
+    str = Strings.cvtArray(o);
+    assertThat(str, is(equalTo("1 2 3 4 5")));
+
+    String[] b = new String[] { "1", "2", "3" };
+    o = b;
+    str = Strings.cvtArray(o);
+    assertThat(str, is(equalTo("1 2 3")));
+    
+    
+  }
 }

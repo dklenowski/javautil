@@ -1,7 +1,6 @@
 package com.orbious.util;
 
 import gnu.trove.set.hash.TIntHashSet;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -18,6 +17,15 @@ import name.fraser.neil.plaintext.diff_match_patch.Diff;
 public class Strings {
 
   private Strings() { }
+  
+  public static String cvtArray(Object a) {
+    if ( a instanceof int[] )
+      return cvtIntArray( (int[]) a);
+    else if ( a instanceof String[] ) 
+      return cvtStringArray( (String[])a );
+    else 
+      return a.toString();
+  }
   
   public static String cvtCharArray(final char[] buffer) {
     return cvtCharArray(buffer, 0, buffer.length);
@@ -116,7 +124,7 @@ public class Strings {
 
     return sb.toString();
   }
-  
+
   public static String cvtTIntHashSet(TIntHashSet buffer) {
     int[] a = buffer.toArray();
     return cvtIntArray(a);
