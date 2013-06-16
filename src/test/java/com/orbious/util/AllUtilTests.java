@@ -12,7 +12,8 @@ import com.orbious.util.config.ConfigTest;
   BytesTest.class,
   CommandTest.class,
   FilenameTest.class,
-  StringsTest.class
+  StringsTest.class,
+  ArrayEntryTest.class
 })
 
 public class AllUtilTests {
