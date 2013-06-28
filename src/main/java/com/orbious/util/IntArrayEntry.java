@@ -3,12 +3,12 @@ package com.orbious.util;
 import java.io.Serializable;
 import java.util.Arrays;
 
-public final class ArrayEntry implements Serializable, Comparable<ArrayEntry> {
+public final class IntArrayEntry implements Serializable, Comparable<IntArrayEntry> {
   
   private static final long serialVersionUID = 1L;
   private final int[] entry;
   
-  public ArrayEntry(int[] entry) {
+  public IntArrayEntry(int[] entry) {
     this.entry = entry;
   }
   
@@ -23,10 +23,10 @@ public final class ArrayEntry implements Serializable, Comparable<ArrayEntry> {
   
   @Override
   public boolean equals(Object obj) {
-    if ( !(obj instanceof ArrayEntry) )
+    if ( !(obj instanceof IntArrayEntry) )
       return false;
 
-    return Arrays.equals(entry, ((ArrayEntry)obj).entry);
+    return Arrays.equals(entry, ((IntArrayEntry)obj).entry);
   }
 
   @Override
@@ -35,7 +35,7 @@ public final class ArrayEntry implements Serializable, Comparable<ArrayEntry> {
   }
 
   @Override
-  public int compareTo(ArrayEntry o) {
+  public int compareTo(IntArrayEntry o) {
     int length1 = this.entry.length;
     int length2 = o.entry.length;
     int min = Math.min(length1, length2);

@@ -5,12 +5,12 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 import org.junit.Test;
 
-public class ArrayEntryTest {
+public class IntArrayEntryTest {
   
   @Test
   public void equals() throws Exception {
-    ArrayEntry ae = new ArrayEntry(new int[] { 1, 2, 3, 4 });
-    ArrayEntry ae2 = new ArrayEntry(new int[] { 1, 2, 3, 4 });
+    IntArrayEntry ae = new IntArrayEntry(new int[] { 1, 2, 3, 4 });
+    IntArrayEntry ae2 = new IntArrayEntry(new int[] { 1, 2, 3, 4 });
     
     assertThat(ae.equals(ae2), is(true));
     assertThat(ae2.equals(ae), is(true));
@@ -20,8 +20,8 @@ public class ArrayEntryTest {
   
   @Test
   public void singleequals() throws Exception {
-    ArrayEntry ae = new ArrayEntry(new int[] { 1 });
-    ArrayEntry ae2 = new ArrayEntry(new int[] { 1 });
+    IntArrayEntry ae = new IntArrayEntry(new int[] { 1 });
+    IntArrayEntry ae2 = new IntArrayEntry(new int[] { 1 });
     
     assertThat(ae.equals(ae2), is(true));
     assertThat(ae2.equals(ae), is(true));
@@ -31,8 +31,8 @@ public class ArrayEntryTest {
   
   @Test
   public void notequals() throws Exception {
-    ArrayEntry ae = new ArrayEntry(new int[] { 1, 3, 4 });
-    ArrayEntry ae2 = new ArrayEntry(new int[] { 1, 2, 3, 4 });
+    IntArrayEntry ae = new IntArrayEntry(new int[] { 1, 3, 4 });
+    IntArrayEntry ae2 = new IntArrayEntry(new int[] { 1, 2, 3, 4 });
     
     assertThat(ae.equals(ae2), is(false));
     assertThat(ae2.equals(ae), is(false));
@@ -41,8 +41,8 @@ public class ArrayEntryTest {
 
   @Test
   public void notequalssingle() throws Exception {
-    ArrayEntry ae = new ArrayEntry(new int[] { 1 });
-    ArrayEntry ae2 = new ArrayEntry(new int[] { 2 });
+    IntArrayEntry ae = new IntArrayEntry(new int[] { 1 });
+    IntArrayEntry ae2 = new IntArrayEntry(new int[] { 2 });
     
     assertThat(ae.equals(ae2), is(false));
     assertThat(ae2.equals(ae), is(false));
@@ -50,26 +50,26 @@ public class ArrayEntryTest {
   
   @Test
   public void compareTo() {
-    ArrayEntry ae;
-    ArrayEntry ae2;
+    IntArrayEntry ae;
+    IntArrayEntry ae2;
     
-    ae = new ArrayEntry(new int[] { 8, 9, 10, 11 });
-    ae2 = new ArrayEntry(new int[] { 8, 9, 10, 11 });
+    ae = new IntArrayEntry(new int[] { 8, 9, 10, 11 });
+    ae2 = new IntArrayEntry(new int[] { 8, 9, 10, 11 });
     assertThat(ae.compareTo(ae2), is(0));
     assertThat(ae2.compareTo(ae), is(0));
     
-    ae = new ArrayEntry(new int[] { 8, 9, 10 });
-    ae2 = new ArrayEntry(new int[] { 8, 9, 10, 11 });
+    ae = new IntArrayEntry(new int[] { 8, 9, 10 });
+    ae2 = new IntArrayEntry(new int[] { 8, 9, 10, 11 });
     assertThat(ae.compareTo(ae2), is(-1));
     assertThat(ae2.compareTo(ae), is(1));
 
-    ae = new ArrayEntry(new int[] { 8, 9, 10, 11 });
-    ae2 = new ArrayEntry(new int[] { 8, 9, 10 });
+    ae = new IntArrayEntry(new int[] { 8, 9, 10, 11 });
+    ae2 = new IntArrayEntry(new int[] { 8, 9, 10 });
     assertThat(ae.compareTo(ae2), is(1));
     assertThat(ae2.compareTo(ae), is(-1));
     
-    ae = new ArrayEntry(new int[] { 7, 9, 10, 11 });
-    ae2 = new ArrayEntry(new int[] { 8, 9, 10, 11 });
+    ae = new IntArrayEntry(new int[] { 7, 9, 10, 11 });
+    ae2 = new IntArrayEntry(new int[] { 8, 9, 10, 11 });
     assertThat(ae.compareTo(ae2), is(-1));
     assertThat(ae2.compareTo(ae), is(1));
   }
