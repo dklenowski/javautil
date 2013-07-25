@@ -22,6 +22,17 @@ public class Strings {
     return str.replaceAll("\\s", "");
   }
   
+  public static String compress(String[] a) { 
+    StringBuilder sb = new StringBuilder();
+    
+    for ( int i = 0; i < a.length; i++ ) {
+      if ( a[i] == null ) continue;
+      sb.append( a[i].replaceAll("\\s", "") );
+    }
+    
+    return sb.toString();
+  }
+  
   public static String cvtArray(Object a) {
     if ( a instanceof int[] )
       return cvtIntArray( (int[]) a);
