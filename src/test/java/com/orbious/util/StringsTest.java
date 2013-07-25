@@ -14,6 +14,20 @@ public class StringsTest {
 		assertThat(Strings.class, notNullValue());
 	}
 
+	 @Test
+	 public void compress() {
+	   String str;
+	   String act;
+	   
+	   str = " a string with some whitespace . ";
+	   act = Strings.compress(str);
+	   assertThat(act, is(equalTo("astringwithsomewhitespace.")));
+
+	   str = "Another String with some numbers (65) and punctuation?";
+     act = Strings.compress(str);
+     assertThat(act, is(equalTo("AnotherStringwithsomenumbers(65)andpunctuation?")));
+	 }
+	
 	@Test
 	public void cvtString_A$() {
 	  String str;
@@ -83,7 +97,5 @@ public class StringsTest {
     o = b;
     str = Strings.cvtArray(o);
     assertThat(str, is(equalTo("1 2 3")));
-    
-    
   }
 }

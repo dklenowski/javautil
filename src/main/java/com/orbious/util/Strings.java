@@ -18,6 +18,10 @@ public class Strings {
 
   private Strings() { }
   
+  public static String compress(String str) {
+    return str.replaceAll("\\s", "");
+  }
+  
   public static String cvtArray(Object a) {
     if ( a instanceof int[] )
       return cvtIntArray( (int[]) a);
