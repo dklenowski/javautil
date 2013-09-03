@@ -44,7 +44,19 @@ public class IntArrayUtils {
     return true;
   }
   
+  public static int matchcount(final int[] src, final int[] dst) {
+    int ct = 0;
+    for ( int i = 0; i < src.length; i++ ) {
+      for ( int j = 0; j < dst.length; j++ ) {
+        if ( src[i] == dst[j] ) {
+          ct++;
+          break;
+        }
+      }
+    }
 
+    return ct;
+  }
 
   // min is the mininum number of unpaded entries
   // that must exist
