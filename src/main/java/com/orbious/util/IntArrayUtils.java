@@ -73,6 +73,15 @@ public class IntArrayUtils {
     return false;
   }
   
+  // counts the number of entries in a that are > cutoffcount
+  public static int count(int[] a, int cutoffcount) {
+    int ct = 0;
+    for ( int i = 0; i < a.length; i++ ) 
+      if ( a[i] > cutoffcount ) ct++;
+    
+    return ct;
+  }
+  
   public static boolean contains(int[] a, int idx) {
     for ( int i = 0; i < a.length; i++ ) 
       if ( a[i] == idx ) return true;
