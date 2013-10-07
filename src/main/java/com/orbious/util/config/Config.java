@@ -19,7 +19,8 @@ public class Config {
   private static Preferences preferences;
 
   static {
-    preferences = Preferences.userRoot().node(Config.class.getName());
+    if ( preferences == null )
+      preferences = Preferences.userRoot().node(Config.class.getName());
   }
 
   private Config() { }
@@ -140,10 +141,13 @@ public class Config {
 
     verify(clazz);
 
-    try {
-      preferences.clear();
-    } catch ( BackingStoreException ignored ) { }
-
+    // this can be a problem if we try to load multiple config's
+    // so its disabled ..
+    //try {
+    //  preferences.clear();
+    //} catch ( BackingStoreException ignored ) { }      
+    
+    
     cfgs = (IConfig[])clazz.getEnumConstants();
     for ( int i = 0; i < cfgs.length; i++ ) {
       cfg = cfgs[i];

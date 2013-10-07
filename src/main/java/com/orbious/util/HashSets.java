@@ -69,21 +69,26 @@ public class HashSets {
     if ( in == null )
       throw new FileNotFoundException("Failed to open file " + filename);
 
-    BufferedReader br = new BufferedReader(new InputStreamReader(in));
-    HashSet<String> hs = new HashSet<String>();
-
-    String wd;
-    while ( (wd = br.readLine()) != null ) {
-      if ( !wd.matches("#.*") ) {
-        // ignore comments.
-        if ( lowercase )
-          hs.add(wd.toLowerCase());
-        else
-          hs.add(wd);
-      }
-    }
-
-    br.close();
-    return(hs);
+    return cvtStreamToHash(in, lowercase);
   }
+  
+  public static HashSet<String> cvtStreamToHash(InputStream in, boolean lowercase)
+      throws IOException {
+      BufferedReader br = new BufferedReader(new InputStreamReader(in));
+      HashSet<String> hs = new HashSet<String>();
+
+      String wd;
+      while ( (wd = br.readLine()) != null ) {
+        if ( !wd.matches("#.*") ) {
+          // ignore comments.
+          if ( lowercase )
+            hs.add(wd.toLowerCase());
+          else
+            hs.add(wd);
+        }
+      }
+
+      br.close();
+      return(hs);
+    }
 }
