@@ -22,9 +22,13 @@ public class IntArrayUtils {
   }
   
   public static int[] unpad(final int[] a) {
+    return unpad(a, -1);
+  }
+  
+  public static int[] unpad(final int[] a, int padint) {
     TIntArrayList al = new TIntArrayList(a.length);
     for ( int i = 0; i < a.length; i++ ) {
-      if ( a[i] != -1 ) al.add(a[i]);
+      if ( a[i] != padint ) al.add(a[i]);
     }
 
     return al.toArray();
