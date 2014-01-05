@@ -28,15 +28,6 @@ public class IntBytePackerTest {
     is = IntBytePacker.unpack2(in);
     for ( int i = 0; i < b.length; i++ ) 
       Assert.assertEquals((int)Byte.MAX_VALUE, is[i]);
-    
-    in = IntBytePacker.pack(Byte.MIN_VALUE, Byte.MIN_VALUE, Byte.MIN_VALUE, Byte.MIN_VALUE);
-    b = IntBytePacker.unpack(in);
-    for ( int i = 0; i < b.length; i++ ) 
-      Assert.assertEquals(Byte.MIN_VALUE, b[i]);
-    
-    is = IntBytePacker.unpack2(in);
-    for ( int i = 0; i < b.length; i++ ) 
-      Assert.assertEquals((int)Byte.MIN_VALUE, is[i]);
   }
 
   @Test

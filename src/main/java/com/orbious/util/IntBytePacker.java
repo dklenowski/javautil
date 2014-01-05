@@ -2,6 +2,9 @@ package com.orbious.util;
 
 public class IntBytePacker {
 
+  //
+  // NOTE, THE BYTES MUST BE POSITIVE. Otherwise
+  // there are problems with the sign when we unpack.
   public static int pack(byte i, byte j, byte k, byte l) {
     return 
         ((int)(i & 0xff) << 24) |
