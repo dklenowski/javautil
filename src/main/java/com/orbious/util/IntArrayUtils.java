@@ -1,7 +1,6 @@
 package com.orbious.util;
 
 import java.util.Arrays;
-
 import gnu.trove.list.array.TIntArrayList;
 import gnu.trove.set.hash.TIntHashSet;
 
@@ -21,10 +20,6 @@ public class IntArrayUtils {
     return b;
   }
   
-  public static int[] unpad(final int[] a) {
-    return unpad(a, -1);
-  }
-  
   public static int[] unpad(final int[] a, int padint) {
     TIntArrayList al = new TIntArrayList(a.length);
     for ( int i = 0; i < a.length; i++ ) {
@@ -34,7 +29,7 @@ public class IntArrayUtils {
     return al.toArray();
   }
   
-  public static boolean allpad(final int[] a) {
+  public static boolean allpad(final int[] a, int padint) {
     for ( int i = 0; i < a.length; i++ ) 
       if ( a[i] != -1 ) return false;
     
@@ -97,7 +92,7 @@ public class IntArrayUtils {
   // match items in the smaller array to the larger array
   // order not considered
   //
-  public static boolean contains(int[] a, int[] b, int min, boolean padded) {
+  public static boolean contains(int[] a, int[] b, int min, boolean padded, int padint) {
     int[] ua;
     int[] ub;
     
@@ -105,8 +100,8 @@ public class IntArrayUtils {
       ua = a;
       ub = b;
     } else {
-      ua = unpad(a);
-      ub = unpad(b);
+      ua = unpad(a, padint);
+      ub = unpad(b, padint);
     }
 
     int[] pattern;
@@ -119,7 +114,7 @@ public class IntArrayUtils {
       pattern = ua;
       text = ub;
     }
-
+    
     if ( min == -1 ) min = pattern.length;
     
     int i, j;
@@ -144,7 +139,6 @@ public class IntArrayUtils {
       if ( ct >= min ) return true;
       i++;
     }
-    
     
     if ( ct >= min ) return true;
     return false;
