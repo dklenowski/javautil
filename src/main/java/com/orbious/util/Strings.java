@@ -62,10 +62,17 @@ public class Strings {
   }
 
   public static String cvtIntArray(final int[] buffer, int start, int end) {
+  	return cvtIntArray(buffer, " ", start, end);
+  }
+  
+  public static String cvtIntArray(final int[] buffer, String spacer) {
+    return cvtIntArray(buffer, spacer, 0, buffer.length);
+  }
+  
+  public static String cvtIntArray(final int[] buffer, String spacer, int start, int end) {
     if ( start < 0 ) start = 0;
     if ( end > buffer.length ) end = buffer.length;
 
-    String spacer =  " ";
     StringBuilder sb = new StringBuilder();
 
     for ( int i = start; i < end; i++ ) {
