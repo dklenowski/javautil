@@ -169,4 +169,25 @@ public class IntArrayUtils {
     return true;
   }
   
+  // Returns entries in b that dont exist in a
+  //
+  public static int[] findmissing(int[] a, int[] b) {
+    TIntArrayList al = new TIntArrayList();
+    
+    boolean fnd;
+    for ( int i = 0; i < b.length; i++ ) {
+      fnd = false;
+      for ( int j = 0; j < a.length; j++ ) {
+        if ( b[i] == a[j] ) {
+          fnd = true;
+          break;
+        }
+      }
+      
+      if ( !fnd ) al.add(b[i]);
+    }
+    
+
+    return al.toArray();
+  }
 }
