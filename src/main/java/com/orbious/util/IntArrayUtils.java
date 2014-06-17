@@ -31,7 +31,7 @@ public class IntArrayUtils {
   
   public static boolean allpad(final int[] a, int padint) {
     for ( int i = 0; i < a.length; i++ ) 
-      if ( a[i] != -1 ) return false;
+      if ( a[i] != padint ) return false;
     
     return true;
   }
