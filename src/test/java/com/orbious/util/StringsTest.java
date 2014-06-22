@@ -14,34 +14,6 @@ public class StringsTest {
 		assertThat(Strings.class, notNullValue());
 	}
 
-	 @Test
-	 public void compress() {
-	   String str;
-	   String act;
-	   
-	   str = " a string with some whitespace . ";
-	   act = Strings.compress(str);
-	   assertThat(act, is(equalTo("astringwithsomewhitespace.")));
-
-	   str = "Another String with some numbers (65) and punctuation?";
-     act = Strings.compress(str);
-     assertThat(act, is(equalTo("AnotherStringwithsomenumbers(65)andpunctuation?")));
-	 }
-
-	 @Test
-	 public void compress2() {
-	   String[] a;
-	   String act;
-	   
-	   a = new String[] { "another", "test", "string", "12.4", ",", "4", "." };
-	   act = Strings.compress(a);
-	   assertThat(act, is(equalTo("anotherteststring12.4,4.")));
-
-     a = new String[] { "another", "test", "string's", "12.4 ", ",", "4", " ." };
-     act = Strings.compress(a);
-     assertThat(act, is(equalTo("anotherteststring's12.4,4.")));
-	 }
-	 
 	@Test
 	public void cvtString_A$() {
 	  String str;
