@@ -20,6 +20,19 @@ public class IntArrayUtils {
     return b;
   }
   
+  public static int[] pad(final int[] a, int len, int padint) { 
+    if ( a.length >= len ) 
+      return a;
+    
+    int[] b = new int[len];
+    for ( int i = 0; i < b.length; i++ ) {
+      if ( i < a.length ) b[i] = a[i];
+      else b[i] = padint;
+    }
+    
+    return b;
+  }
+  
   public static int[] unpad(final int[] a, int padint) {
     TIntArrayList al = new TIntArrayList(a.length);
     for ( int i = 0; i < a.length; i++ ) {

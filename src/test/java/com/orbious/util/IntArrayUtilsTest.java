@@ -26,6 +26,18 @@ public class IntArrayUtilsTest {
     b = IntArrayUtils.cardinality(a);
     Assert.assertArrayEquals(b, new int[] { 1, 3, 46, 65, 95, 100 });
   }
+
+  @Test
+  public void pad() {
+    int[] a;
+
+    a = IntArrayUtils.pad(new int[] { 0, 5, 6, 7 }, 3, -1);
+    Assert.assertArrayEquals(a, new int[]  { 0, 5, 6, 7 });
+    
+    a = IntArrayUtils.pad(new int[] { 1, 1 }, 5, -1);
+    Assert.assertArrayEquals(a, new int[] { 1, 1, -1, -1, -1 });
+  }
+  
   
   @Test
   public void unpad() {
