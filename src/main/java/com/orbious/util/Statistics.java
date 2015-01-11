@@ -76,5 +76,13 @@ public class Statistics {
     return al.toArray();
   }
   
+  @Override
+  public String toString() { 
+    String statsstr = "sum=" + sum + " mean=" + mean + " stddev=" + stddev;
+    if ( data == null ) return statsstr;
+    
+    return "DataSetSize=" + data.length + ": " + statsstr;
+  }
+  
   
 }
