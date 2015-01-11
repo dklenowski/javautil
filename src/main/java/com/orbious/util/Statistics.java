@@ -26,6 +26,12 @@ public class Statistics {
     stddev = Double.NaN;
   }
   
+  public void parse() {
+    sum();
+    mean();
+    stddev();
+  }
+  
   public double mean() {
     if ( !Double.isNaN(mean) ) return mean;
 
